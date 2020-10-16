@@ -1,4 +1,5 @@
-﻿using Arfolyam.MnbServiceReference;
+﻿using Arfolyam.Entities;
+using Arfolyam.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,17 +14,20 @@ namespace Arfolyam
 {
     public partial class Form1 : Form
     {
+
+        BindingList<RateData> Rates = new BindingList<RateData>();
+
         public Form1()
         {
             InitializeComponent();
             GetExchangeRates();
+            dataGridView1.DataSource = Rates;
         }
 
+        private void GetExchangeRates()
+        {
 
-
-        private void GetExchangeRates() {
-
-            var mnbService = new MNBArfolyamServiceSoapClient();
+            var mnbservice = new MNBArfolyamServiceSoapClient();
 
             var request = new GetExchangeRatesRequestBody()
             {
@@ -32,14 +36,17 @@ namespace Arfolyam
                 endDate = "2020-06-30"
             };
 
-            var response = mnbService.GetExchangeRates(request);
-            var result = response.GetExchangeRatesResult;
+            var response = mnbservice.GetExchangeRates(request);
+            var result = response.GetExchangeRatesResult; ;
 
             Console.WriteLine(result);
-
         }
 
-     
+        
+
+
+
+
 
 
 
