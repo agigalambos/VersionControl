@@ -22,10 +22,7 @@ namespace Arfolyam
         public Form1()
         {
             InitializeComponent();
-            GetExchangeRates();
-            dataGridView1.DataSource = Rates;
-            ProcessXml();
-            CreateVisual();
+            RefreshData();
         }
 
         private void GetExchangeRates()
@@ -35,9 +32,9 @@ namespace Arfolyam
 
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                currencyNames = comboBox1.SelectedItem.ToString(),
+                startDate = startDate.Value.ToString(),
+                endDate = endDate.Value.ToString()
             };
 
             var response = mnbservice.GetExchangeRates(request);
@@ -69,8 +66,11 @@ namespace Arfolyam
                 var value = decimal.Parse(childElement.InnerText);
                 if (unit != 0)
                     rate.Value = value / unit;
-            }
 
+                if (childElement == null)
+                    continue;
+            }
+           
 
         }
 
@@ -91,17 +91,36 @@ namespace Arfolyam
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
+        }
+
+        private void RefreshData() 
+        {
+            Rates.Clear();
+
+            GetExchangeRates();
+            dataGridView1.DataSource = Rates;
+            ProcessXml();
+            CreateVisual();
+
+            
+
 
 
         }
 
-        
+        private void startDate_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
 
+        private void endDate_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
 
-
-
-
-
-
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
     }
 }
