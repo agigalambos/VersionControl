@@ -85,6 +85,7 @@ namespace MicroSimulation
             return deathProbabilities;
 
         }
-        
+
+        Random rng = new Random(1234);
     }
 }
