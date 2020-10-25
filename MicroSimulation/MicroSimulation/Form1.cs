@@ -22,9 +22,9 @@ namespace MicroSimulation
         public Form1()
         {
             InitializeComponent();
-            GetPopulation(@"C:\Temp\nép-teszt.csv");
-            GetBirthProbabilities(@"C:\Temp\születés.csv");
-            GetDeathProbabilities(@"C:\Temp\halál.csv");
+            Population = GetPopulation(@"C:\Temp\nép-teszt.csv");
+            BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
 
             for (int year = 2005; year <= 2024; year++)
             {
