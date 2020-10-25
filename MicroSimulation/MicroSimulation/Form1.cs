@@ -45,6 +45,8 @@ namespace MicroSimulation
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
 
+            
+
         }
 
         public List<Person> GetPopulation(string csvpath)
@@ -143,5 +145,14 @@ namespace MicroSimulation
             }
         }
 
+        public void Simulation() 
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Simulation();
+        }
     }
 }
