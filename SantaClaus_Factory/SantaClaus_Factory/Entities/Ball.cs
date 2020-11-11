@@ -12,31 +12,16 @@ namespace SantaClaus_Factory.Entities
 {
     public class Ball:Toy
     {
-        //lehet, hogy csak az override rész kell ide?
-        public Ball()
-        {
-           //AutoSize = false;
-           //Width = 50;
-           //Height = 50;
-           // Paint += Ball_Paint;
-        }
+        public SolidBrush BallColor { get; private set; }
 
-        //private void Ball_Paint(object sender, PaintEventArgs e)
-        //{
-        //    DrawImage(e.Graphics);
-        //}
+        public Ball(Color color)
+        {
+            BallColor = new SolidBrush(color);
+        }
 
         protected override void DrawImage(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
+            g.FillEllipse(BallColor, 0, 0, Width, Height);
         }
-
-        //public void MoveBall()
-        //{
-        //    Left += 1;
-        //}
-
-
-
     }
 }

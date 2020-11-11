@@ -30,6 +30,8 @@ namespace SantaClaus_Factory
             }
         }
 
+        //public object BallColor { get; private set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace SantaClaus_Factory
             _toys.Add(ball);
             ball.Left = -ball.Width;
             mainPanel.Controls.Add(ball);
+            ball.Top = 250;
         }
 
         private void conveyorTimer_Tick(object sender, EventArgs e)
@@ -71,17 +74,32 @@ namespace SantaClaus_Factory
 
         private void btnSelectBall_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory();
+            Factory = new BallFactory
+            {
+                BallColor = btnColor.BackColor
+            };
         }
+
+        private void btnSelectPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                BoxColor = btnBoxColor.BackColor,
+                RibbonColor=btnRibbonColor.BackColor
+            };
+        }
+
+
 
         private void DisplayNext()
         {
             if (_nextToy != null)
-                Controls.Remove(_nextToy);
+                mainPanel.Controls.Remove(_nextToy);
             _nextToy = Factory.CreateNew();
             _nextToy.Top = lblNext.Top + lblNext.Height + 20;
             _nextToy.Left = lblNext.Left;
-            Controls.Add(_nextToy);
+            mainPanel.Controls.Add(_nextToy);
+
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -94,5 +112,7 @@ namespace SantaClaus_Factory
                 return;
             button.BackColor = colorPicker.Color;
         }
+
+   
     }
 }
