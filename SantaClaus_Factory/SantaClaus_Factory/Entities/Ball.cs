@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SantaClaus_Factory.Abstractions;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,8 +10,10 @@ using System.Windows.Forms;
 
 namespace SantaClaus_Factory.Entities
 {
-    public class Ball:Label
+    public class Ball:Toy
     {
+        
+
         public Ball()
         {
             AutoSize = false;
@@ -24,7 +27,7 @@ namespace SantaClaus_Factory.Entities
             DrawImage(e.Graphics);
         }
 
-        private void DrawImage(Graphics g) 
+        protected override void DrawImage(Graphics g)
         {
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
