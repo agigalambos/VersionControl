@@ -12,8 +12,7 @@ namespace SantaClaus_Factory.Entities
 {
     public class Ball:Toy
     {
-        
-
+        //lehet, hogy csak az override rész kell ide?
         public Ball()
         {
             AutoSize = false;
