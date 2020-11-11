@@ -15,26 +15,26 @@ namespace SantaClaus_Factory.Entities
         //lehet, hogy csak az override rész kell ide?
         public Ball()
         {
-            AutoSize = false;
-            Width = 50;
-            Height = 50;
-            Paint += Ball_Paint;
+           //AutoSize = false;
+           //Width = 50;
+           //Height = 50;
+           // Paint += Ball_Paint;
         }
 
-        private void Ball_Paint(object sender, PaintEventArgs e)
-        {
-            DrawImage(e.Graphics);
-        }
+        //private void Ball_Paint(object sender, PaintEventArgs e)
+        //{
+        //    DrawImage(e.Graphics);
+        //}
 
         protected override void DrawImage(Graphics g)
         {
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
 
-        public void MoveBall()
-        {
-            Left += 1;
-        }
+        //public void MoveBall()
+        //{
+        //    Left += 1;
+        //}
 
 
 
